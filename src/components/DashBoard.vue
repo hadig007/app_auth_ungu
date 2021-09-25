@@ -1,0 +1,112 @@
+<template>
+    <div>
+        <header>
+            <h1>MyAPP</h1>
+            <ul>
+                <li><router-link to="/login">login</router-link></li>
+                <li><router-link to="/register">register</router-link></li>
+                <li><a href="javascript:void(0)">logout</a></li>
+            </ul>
+        </header>
+        <!-- sidebar -->
+        <section>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="sidebar">
+                            <h3 class="account"><i class="fas fa-user-circle"></i> Account</h3>
+                            <div class="navigasi"> 
+                                <div class="nav">
+                                    <h5>
+                                        <i class="fas fa-tachometer-alt"></i><router-link to="/home/dashboard">   Dashboard</router-link>  
+                                    </h5>
+                                    <i class="fas fa-chevron-right"></i>
+                                </div>
+                                <h6>menu</h6>
+                                <div class="nav">
+                                    <h5>
+                                        <i class="fas fa-user-friends"></i><router-link to="/home/employee">   Employee</router-link>  
+                                    </h5>
+                                    <i class="fas fa-chevron-right"></i>
+                                </div>
+                                <div class="nav">
+                                    <h5>
+                                        <i class="fas fa-user-friends"></i><router-link to="/home/suppliers">   Suppliers</router-link>  
+                                    </h5>
+                                    <i class="fas fa-chevron-right"></i>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <router-view></router-view>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</template>
+
+<script>
+export default {
+    
+}
+</script>
+
+<style scoped>
+header{
+    background-color: rgb(139, 97, 255);
+    color: white;
+    font-family: inherit;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+    align-items: center;
+}
+ul{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
+li{
+    list-style: none;
+    margin: 5px 10px;
+}
+.sidebar{
+    background-color: lavender;
+    width: 100%;
+    height: 1000px;
+    padding: 10px 20px;
+}
+.row>*{
+    padding: 0;
+}
+.account{
+    text-align: center;
+    font-weight: bold;
+    color: rgb(42, 48, 70);
+    padding: 15px;
+}
+h6{
+    color: grey;
+}
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: .3s;
+}
+h5,h6{
+    padding: 15px;
+    margin: 0;
+}
+a{
+    color: rgb(49, 59, 78);
+    text-decoration: none;
+}
+.nav:hover{
+    transform: scale(1.09);
+    background-color: whitesmoke;
+}
+</style>
