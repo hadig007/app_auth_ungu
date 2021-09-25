@@ -1,29 +1,29 @@
 <template>
     <div>
-        <form>
-            <h2>Login Form</h2>
+        <form @submit.prevent="register">
+            <h2>Register Form</h2>
             <div class="form-login">
                 <div class="form">
                     <label for="name">Name</label>
-                    <input type="text">
+                    <input type="text" v-model.trim="name">
                 </div>
             </div>
             <div class="form-login">
                 <div class="form">
                     <label for="email">Email</label>
-                    <input type="text">
+                    <input type="text" v-model.trim="email">
                 </div>
             </div>
             <div class="form-login">
                 <div class="form">
                     <label for="password">Password</label>
-                    <input type="text">
+                    <input type="text" v-model.trim="password">
                 </div>
             </div>
             <div class="form-login">
                 <div class="form">
                     <label for="password_confirmation">Password Confirmation</label>
-                    <input type="text">
+                    <input type="text" v-model.trim="password_confirmation">
                 </div>
             <button>Register</button>
             <p>have an account? <router-link to="/login">login</router-link></p>
@@ -33,7 +33,27 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
+    data(){
+        return{
+            name:'',
+            email:'',
+            password:'',
+            password_confirmation:''
+        }
+    },
+    methods:{
+        register(){
+            axios.post('auth/register',{
+                name: this.name,
+                email:this.email,
+                password: this.password,
+                password_confirmation:this.password_confirmation
+            }).then(res=>console.log(res.data))
+            .catch(e=>console.log(e.response.data))
+        }
+    }
     
 }
 </script>
@@ -76,6 +96,7 @@ input{
     border: solid 1px violet;
     border-radius: 4px;
     min-width: 210px;
+    color: grey;
 
 }
 p{

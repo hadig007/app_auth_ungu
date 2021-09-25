@@ -18,9 +18,7 @@ const router = createRouter({
             {path: 'suppliers', component: Suppliers, name:'suppliers'},
         ]},
         {path:'/:NotFound(.*)', component: NotFound},
-
         // autentikasi 
-
         {path :'/login', component: Login },
         {path :'/register', component: Register },
     ]
