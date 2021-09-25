@@ -1,15 +1,15 @@
 <template>
     <div>
-        <form>
+        <form @submit.prevent="login">
             <h2>Login Form</h2>
             <div class="form-login">
                 <div class="form">
                 <label for="email">Email</label>
-                <input type="text">
+                <input type="text" v-model.trim="email">
             </div>
             <div class="form">
                 <label for="password">Password</label>
-                <input type="text">
+                <input type="text" v-model.trim="password">
             </div>
             <button>Login</button>
             <p>haven't an account? <router-link to="/register">register</router-link></p>
@@ -19,8 +19,32 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-    
+    data(){
+        return{
+            email:'',
+            password:''
+        }
+    },
+    methods:{
+        async login(){
+            let data_login = await axios.post('auth/login',{
+                email :this.email,
+                password :this.password,
+                password_confirmation :this.password,
+            })
+                .then((res)=>{
+                    data_login = res.data.access_token
+                    localStorage.setItem('token', data_login)
+                    this.$store.dispatch('login', data_login)
+                    this.$router.replace('/home/dashboard')
+                    console.log(data_login)
+                })
+                .catch(e=>console.log('gagal',e.response.data))
+
+        }
+    }
 }
 </script>
 

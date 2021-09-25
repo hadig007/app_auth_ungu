@@ -49,8 +49,40 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import axios from 'axios'
 export default {
-    
+    async created(){
+        let data_user = await axios.get('auth/user-profile',{
+            headers:{
+                Authorization : "Berer " + localStorage.getItem('token')
+            }
+        })
+            .then((res)=>{
+                data_user = res.data
+                console.log('user data dari created',data_user)
+                this.$store.dispatch('user_profile', data_user)
+            }).catch((e)=>{
+                console.log(e.response)
+                this.$router.push('/login')
+            })
+        
+        
+
+
+
+        // pengecekan autentikasi
+        if(this.$store.getters['authenticated']){
+            return true
+        }else{
+            
+            return false
+        }
+        // pengecekan authentikasi selesai
+    },
+    computed:{
+        ...mapGetters(['authenticated']),
+    }
 }
 </script>
 

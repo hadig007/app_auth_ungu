@@ -50,8 +50,10 @@ export default {
                 email:this.email,
                 password: this.password,
                 password_confirmation:this.password_confirmation
-            }).then(res=>console.log(res.data))
+            }).then()
             .catch(e=>console.log(e.response.data))
+
+            this.$router.replace('/login')
         }
     }
     
