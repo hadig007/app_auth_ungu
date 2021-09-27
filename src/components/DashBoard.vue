@@ -25,7 +25,7 @@
                                 <h6>menu</h6>
                                 <div class="nav">
                                     <h5>
-                                        <i class="fas fa-user-friends"></i><router-link to="/home/employee">   Employee</router-link>  
+                                        <i class="fas fa-book"></i><router-link to="/home/data_buku">   Data Buku</router-link>  
                                     </h5>
                                     <i class="fas fa-chevron-right"></i>
                                 </div>
@@ -52,6 +52,11 @@
 import { mapGetters } from 'vuex'
 import axios from 'axios'
 export default {
+    data(){
+        return{
+
+        }
+    },
     async created(){
         let data_user = await axios.get('auth/user-profile',{
             headers:{
@@ -66,14 +71,9 @@ export default {
                 console.log(e.response)
                 this.$router.push('/login')
             })
-        
-        
-
-
-
         // pengecekan autentikasi
         if(this.$store.getters['authenticated']){
-            return true
+            return this.$router.push('/home/dashboard')
         }else{
             
             return false
@@ -128,6 +128,7 @@ h6{
     align-items: center;
     justify-content: space-between;
     transition: .3s;
+    padding: 10px;
 }
 h5,h6{
     padding: 15px;
@@ -137,8 +138,10 @@ a{
     color: rgb(49, 59, 78);
     text-decoration: none;
 }
-.nav:hover{
+.nav:hover,
+.nav:active{
     transform: scale(1.09);
     background-color: whitesmoke;
+    border-radius: 4px;
 }
 </style>
