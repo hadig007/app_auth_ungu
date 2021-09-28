@@ -11,8 +11,10 @@
         <!-- sidebar -->
         <section>
             <div class="container-fluid">
+                <button class="posa" v-if="show" @click="show=!show"><i class="fas fa-bars"></i></button>
+                <button class="posb" v-if="!show" @click="show=!show"><i class="fas fa-times"></i></button>
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3" v-if="show">
                         <div class="sidebar">
                             <h3 class="account"><i class="fas fa-user-circle"></i> Account</h3>
                             <div class="navigasi"> 
@@ -39,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md">
                         <router-view></router-view>
                     </div>
                 </div>
@@ -54,7 +56,7 @@ import axios from 'axios'
 export default {
     data(){
         return{
-
+            show:true
         }
     },
     async created(){
@@ -87,6 +89,15 @@ export default {
 </script>
 
 <style scoped>
+.container-fluid{
+    padding: 0;
+}
+.posa,.posb{
+    background-color: rgb(220, 220, 250);
+    border: none;
+    display: inline;
+    width: 260px;
+}
 header{
     background-color: rgb(139, 97, 255);
     color: white;
